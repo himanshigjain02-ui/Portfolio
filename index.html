@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Himanshi Jain — Visual & UI/UX Designer Portfolio</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Poppins & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,600&family=Poppins:wght@300;400;450;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+            serifAccent: ['"Playfair Display"', 'serif'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+      background-color: #030712;
+      color: #ffffff;
+      transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .font-upright-clean {
+      font-family: 'Poppins', sans-serif;
+      font-style: normal !important;
+      font-weight: 450;
+    }
+
+    /* SCENERY 1: SUNSET (Dark Mode Default) */
+    .scenery-sunset {
+      background: linear-gradient(180deg, 
+        #f97316 0%, 
+        #ea580c 24%, 
+        #c2410c 38%, 
+        #1e1b4b 52%, 
+        #1e3a8a 62%, 
+        #172554 78%, 
+        #020617 100%);
+    }
+
+    /* SCENERY 2: SUNRISE (Light Mode) */
+    .theme-light .scenery-sunset {
+      background: linear-gradient(180deg, 
+        #fed7aa 0%, 
+        #fdba74 20%, 
+        #fca5a5 34%, 
+        #7dd3fc 48%, 
+        #0284c7 62%, 
+        #0369a1 78%, 
+        #075985 100%);
+    }
+
+    /* HERO QUOTE COLOR */
+    #hero-quote {
+      color: #ffffff;
+      text-shadow: 0 2px 24px rgba(2, 6, 23, 0.7), 0 0 12px rgba(254, 215, 170, 0.25);
+      transition: color 0.4s ease, text-shadow 0.4s ease, opacity 0.3s ease;
+    }
+
+    .theme-light #hero-quote {
+      color: #fffbeb;
+      text-shadow: 0 2px 20px rgba(7, 89, 133, 0.9), 0 0 30px rgba(253, 224, 71, 0.55), 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .theme-light #hero-attribution {
+      color: #ffffff !important;
+      text-shadow: 0 2px 14px rgba(3, 105, 161, 0.85), 0 1px 3px rgba(0, 0, 0, 0.6);
+    }
+    .theme-light #hero-attribution span.explore-link {
+      color: #fef08a !important;
+      text-shadow: 0 0 12px rgba(250, 204, 21, 0.6);
+    }
+
+    .mountain-sunset {
+      color: #0b1120;
+      opacity: 0.92;
+      transition: color 0.5s ease, opacity 0.5s ease;
+    }
+    .theme-light .mountain-sunset {
+      color: #0369a1;
+      opacity: 0.88;
+    }
+
+    .sun-orb {
+      background: radial-gradient(circle, #ffedd5 0%, #f43f5e 60%, #e11d48 100%);
+      box-shadow: 0 0 70px rgba(225, 29, 72, 0.85);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .theme-light .sun-orb {
+      background: radial-gradient(circle, #ffffff 0%, #fde047 50%, #f97316 100%);
+      box-shadow: 0 0 90px rgba(253, 224, 71, 0.95), 0 0 40px rgba(249, 115, 22, 0.8);
+      transform: translateY(-8px) scale(1.08);
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 9999px;
+    }
+
+    /* Print styling */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #resume-sheet, #resume-sheet * {
+        visibility: visible;
+      }
+      #resume-sheet {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 20px !important;
+        box-shadow: none !important;
+        border: none !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 8mm;
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-orange-500 selection:text-white antialiased min-h-screen relative flex flex-col justify-between" id="app-root">
+
+  <!-- SCENERY BACKDROP: OCEAN, SUN & MOUNTAINS -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden scenery-sunset transition-all duration-700">
+    <div class="absolute top-[8%] left-1/2 -translate-x-1/2 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full sun-orb"></div>
+
+    <svg class="absolute top-[34%] left-0 w-full h-20 sm:h-28 md:h-36 mountain-sunset" preserveAspectRatio="none" viewBox="0 0 1440 320">
+      <path fill="currentColor" d="M0,160L48,176C96,192,192,224,288,208C384,192,480,128,576,128C672,128,768,192,864,197.3C960,203,1056,149,1152,144C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+    </svg>
+
+    <canvas id="water-ripples" class="absolute top-[42%] left-0 w-full h-[58%] opacity-85"></canvas>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none"></div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="relative z-30 w-full px-6 sm:px-12 md:px-16 lg:px-20 pt-8 sm:pt-10 flex items-center justify-between">
+    <div class="flex items-center space-x-8 sm:space-x-12">
+      <nav class="flex items-center space-x-7 sm:space-x-10 text-xs sm:text-sm tracking-[0.28em] font-medium text-white/90 drop-shadow-sm" aria-label="Main Navigation">
+        <button onclick="openModal('modal-about')" class="hover:text-white transition-colors duration-200 uppercase relative group py-1">
+          ABOUT
+          <span class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-white transition-all duration-300 group-hover:w-full"></span>
+        </button>
+        <button onclick="openWorkModal('all')" class="hover:text-white transition-colors duration-200 uppercase relative group py-1">
+          WORK
+          <span class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-white transition-all duration-300 group-hover:w-full"></span>
+        </button>
+        <button onclick="openModal('modal-talk')" class="hover:text-white transition-colors duration-200 uppercase relative group py-1">
+          CONTACT
+          <span class="absolute bottom-0 left-0 w-0 h-[1.5px] bg-white transition-all duration-300 group-hover:w-full"></span>
+        </button>
+      </nav>
+    </div>
+
+    <div class="flex items-center space-x-3 sm:space-x-5">
+      <button onclick="toggleTheme()" class="text-xs sm:text-sm tracking-wider uppercase flex items-center gap-2 text-white hover:text-amber-200 transition-all bg-black/25 hover:bg-black/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 shadow-md" title="Toggle Sunset/Sunrise Mode">
+        <span id="theme-icon" class="text-sm">🌅</span>
+        <span id="theme-text" class="hidden sm:inline font-medium">Sunrise Mode</span>
+      </button>
+
+      <button onclick="openModal('modal-resume')" class="text-xs sm:text-sm tracking-wider uppercase font-medium text-white hover:text-amber-200 transition-all bg-black/25 hover:bg-black/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 flex items-center gap-1.5 shadow-md">
+        <span>📄</span>
+        <span>Resume</span>
+      </button>
+
+      <button onclick="openModal('modal-talk')" class="group relative inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs sm:text-sm tracking-wider font-medium text-neutral-900 bg-white hover:bg-neutral-100 shadow-xl hover:shadow-white/25 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0">
+        <span>Let's talk</span>
+        <span class="inline-block transform group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform duration-200 text-xs">↳</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- CENTERED HERO DISPLAY -->
+  <main class="relative z-20 w-full px-6 sm:px-12 md:px-16 lg:px-20 py-16 md:py-20 flex flex-col justify-end items-center text-center flex-grow max-w-5xl mx-auto">
+    <div class="w-full space-y-5">
+      <h1 id="hero-quote" class="font-upright-clean text-2xl sm:text-4xl md:text-5xl lg:text-5xl tracking-[0.04em] leading-[1.3] uppercase max-w-4xl mx-auto transition-all duration-500">
+        IT’S NOT IN THE DREAMING,<br class="hidden sm:inline"> IT’S IN THE DOING !
+      </h1>
+
+      <div id="hero-attribution" class="flex flex-wrap items-center justify-center gap-2.5 text-xs sm:text-sm text-white font-normal tracking-wider transition-all duration-300">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 inline-block shadow-[0_0_8px_rgba(244,63,94,0.9)] animate-pulse"></span>
+        <span class="font-semibold text-white tracking-wide">Himanshi Jain</span>
+        <span class="text-white/60">•</span>
+        <span class="text-white/95">Visual & UI/UX Designer</span>
+        <span class="text-white/60">•</span>
+        <span class="explore-link text-white hover:underline cursor-pointer transition-colors font-medium" onclick="openWorkModal('all')">
+          Explore Work Showcase &rarr;
+        </span>
+      </div>
+    </div>
+  </main>
+
+  <!-- MODAL: 1-PAGE PROFESSIONAL RESUME -->
+  <div id="modal-resume" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md hidden opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true">
+    <div class="bg-neutral-900 border border-white/15 text-neutral-100 rounded-2xl w-full max-w-4xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-neutral-950/80 no-print">
+        <div class="flex items-center gap-3">
+          <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+          <h2 class="text-sm tracking-widest uppercase font-medium text-white">Curriculum Vitae • 1-Page Official Resume</h2>
+        </div>
+        <div class="flex items-center gap-3">
+          <button onclick="window.print()" class="px-4 py-1.5 bg-white text-neutral-900 rounded-full text-xs font-medium hover:bg-neutral-200 transition-all flex items-center gap-1.5 shadow-sm">
+            <span>🖨</span>
+            <span>Print / Save as PDF</span>
+          </button>
+          <button onclick="closeModal('modal-resume')" class="text-neutral-400 hover:text-white text-xl p-1 leading-none">&times;</button>
+        </div>
+      </div>
+
+      <div class="p-6 sm:p-8 overflow-y-auto custom-scrollbar bg-neutral-900 text-neutral-200">
+        <div id="resume-sheet" class="bg-white text-slate-900 p-7 sm:p-9 rounded-xl shadow-lg max-w-3xl mx-auto leading-relaxed text-xs sm:text-sm font-sans">
+          
+          <div class="border-b border-slate-300 pb-4 mb-4 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-3">
+            <div>
+              <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950 uppercase">Himanshi Jain</h1>
+              <p class="text-orange-600 font-semibold text-xs sm:text-sm tracking-wider uppercase mt-0.5">Visual & UI/UX Designer</p>
+            </div>
+            <div class="text-right text-[11px] sm:text-xs text-slate-600 space-y-0.5">
+              <div>himanshigjain02@gmail.com</div>
+              <div>+91 7387033411 • Pune, India</div>
+              <div>linkedin.com/in/himanshi-jain-7290b028b</div>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-200 pb-1 mb-1.5">Professional Summary</h3>
+            <p class="text-slate-700 text-[11px] sm:text-xs leading-relaxed">
+              Detail-oriented Visual and UI/UX Designer with proven experience across B2B SaaS interfaces, brand identity systems, marketing collateral, and packaging. Skilled in turning complex workflows into intuitive digital products and high-converting visual systems using Figma, design tokens, and GenAI-accelerated workflows.
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-200 pb-1 mb-2.5">Work Experience</h3>
+            
+            <div class="mb-3.5">
+              <div class="flex justify-between items-baseline">
+                <span class="font-bold text-slate-900 text-xs sm:text-sm">UX/UI Designer • WhiskerBond</span>
+                <span class="text-[10px] sm:text-xs text-slate-500 font-medium">June 2026 – Present | Pune, India</span>
+              </div>
+              <p class="text-[11px] text-orange-600 font-medium mb-1">One-stop pet care ecosystem platform connecting pet parents with verified pet services</p>
+              <ul class="list-disc list-inside text-slate-700 text-[11px] space-y-1">
+                <li>Architected full web UI including customer landing pages, responsive dashboard modules, and authentication flows.</li>
+                <li>Mapped step-by-step user journeys and complex dashboard workflows under mentor direction to improve task completion.</li>
+                <li>Developed and implemented the unified scalable design system currently deployed across client and user portals.</li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="flex justify-between items-baseline">
+                <span class="font-bold text-slate-900 text-xs sm:text-sm">Visual & Campaign Designer • EDC VIT (Vishwapreneur 13)</span>
+                <span class="text-[10px] sm:text-xs text-slate-500 font-medium">2026 | Pune, India</span>
+              </div>
+              <p class="text-[11px] text-orange-600 font-medium mb-1">Flagship Annual Entrepreneurship Summit</p>
+              <ul class="list-disc list-inside text-slate-700 text-[11px] space-y-1">
+                <li>Designed the central summit brand identity combining the "V" motif and parachute symbolizing alchemical transformation.</li>
+                <li>Led OOH billboard advertising at Market Yard & Gangadham along with print collateral across Sakal, ABP Majha, and digital media.</li>
+                <li>Formulated mystery Early-Bird ticket campaign driving sales purely through typography and intentional visual intrigue.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-200 pb-1 mb-2.5">Education</h3>
+            <div class="mb-2 flex justify-between items-start">
+              <div>
+                <div class="font-bold text-slate-900 text-xs sm:text-sm">Vishwakarma Institute of Information Technology (VIIT), Pune</div>
+                <div class="text-[11px] text-slate-700">Bachelor of Technology (B.Tech.) in Information Technology</div>
+              </div>
+              <div class="text-right text-[11px] text-slate-600">
+                <div class="font-medium">2023 – 2027</div>
+                <div class="text-slate-900 font-semibold">CGPA: 8.12/10 <span class="text-slate-500 font-normal">| Sem 6 SGPA: 8.68/10</span></div>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-start">
+              <div>
+                <div class="font-bold text-slate-900 text-xs sm:text-sm">V.C.A.C.S. Junior College, Pune</div>
+                <div class="text-[11px] text-slate-700">Higher Secondary Certificate (HSC) • Science</div>
+              </div>
+              <div class="text-right text-[11px] text-slate-600">
+                <div class="font-medium">2023</div>
+                <div class="text-slate-900 font-semibold">Score: 74.67%</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-200 pb-1 mb-1.5">Core Skills & Tools</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] text-slate-700">
+              <div>
+                <span class="font-semibold text-slate-900">Design & UI/UX:</span> Wireframing, Prototyping, Design Systems, Information Architecture, Accessibility.
+              </div>
+              <div>
+                <span class="font-semibold text-slate-900">Branding & Print:</span> Identity Systems, Typography, OOH Billboards, Packaging, Structural Dielines.
+              </div>
+              <div>
+                <span class="font-semibold text-slate-900">Software & Stack:</span> Figma, Canva, Adobe Creative Suite, GenAI Explorations, HTML/CSS.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: ABOUT HIMANSHI JAIN -->
+  <div id="modal-about" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true">
+    <div class="bg-neutral-900 border border-white/20 text-neutral-100 rounded-2xl w-full max-w-2xl p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] custom-scrollbar">
+      <button onclick="closeModal('modal-about')" class="absolute top-5 right-5 text-neutral-400 hover:text-white text-2xl transition-colors leading-none" aria-label="Close modal">&times;</button>
+      
+      <div class="text-xs tracking-[0.2em] text-orange-400 uppercase font-semibold mb-2">Visual & UI/UX Designer</div>
+      <h2 class="text-2xl sm:text-3xl font-normal text-white uppercase tracking-wide mb-6">Himanshi Jain</h2>
+      
+      <div class="space-y-4 text-sm text-neutral-300 font-light leading-relaxed">
+        <p>
+          I’m a visual designer with experience across branding, graphic design, digital campaigns, and product experiences. I enjoy turning complex ideas into clear, cohesive visual systems through strong typography, composition, and brand storytelling.
+        </p>
+        <p>
+          My experience spans B2B SaaS, event marketing, social media, and packaging, with Generative AI tools integrated into my creative workflow for faster ideation and visual exploration.
+        </p>
+        <p>
+          I’m detail-oriented, collaborative, and passionate about creating purposeful design that strengthens how brands communicate.
+        </p>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+        <button onclick="switchModal('modal-about', 'modal-resume')" class="px-5 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs tracking-wider uppercase font-medium transition-all">
+          View Resume &rarr;
+        </button>
+        <button onclick="switchModal('modal-about', 'modal-talk')" class="px-5 py-2 rounded-full bg-white text-neutral-950 text-xs tracking-wider uppercase font-medium hover:bg-neutral-200 transition-all">
+          Get in Touch &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: WORK SHOWCASE (WITH CLEAR SECTIONS & VIEW ALL) -->
+  <div id="modal-work" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md hidden opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true">
+    <div class="bg-neutral-900 border border-white/20 text-neutral-100 rounded-2xl w-full max-w-5xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      
+      <!-- Top Title Bar -->
+      <div class="p-5 sm:p-7 border-b border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-neutral-950/40">
+        <div>
+          <div class="text-[11px] tracking-[0.25em] text-orange-400 uppercase font-semibold mb-1">Curated Portfolio</div>
+          <h2 class="text-xl sm:text-2xl font-normal text-white uppercase tracking-wide">Selected Works & Case Studies</h2>
+        </div>
+        <button onclick="closeModal('modal-work')" class="self-end sm:self-center text-neutral-400 hover:text-white text-2xl transition-colors leading-none" aria-label="Close modal">&times;</button>
+      </div>
+
+      <!-- DISCIPLINE TABS / FILTER -->
+      <div class="flex items-center gap-2 border-b border-white/10 px-5 sm:px-7 py-3 bg-neutral-950/80 overflow-x-auto text-xs tracking-wider uppercase custom-scrollbar">
+        <button onclick="setWorkView('all')" id="tab-btn-all" class="py-2 px-4 rounded-full font-medium transition-all whitespace-nowrap bg-orange-500 text-white shadow-sm flex items-center gap-1.5">
+          <span>View All</span>
+          <span class="text-[10px] opacity-75 bg-black/30 px-1.5 py-0.5 rounded-full">3</span>
+        </button>
+        <button onclick="setWorkView('interactive')" id="tab-btn-interactive" class="py-2 px-4 rounded-full font-medium transition-all whitespace-nowrap bg-white/5 text-neutral-300 hover:text-white hover:bg-white/10 flex items-center gap-1.5">
+          <span>Interactive UI/UX Design</span>
+          <span class="text-[10px] opacity-75 bg-white/10 px-1.5 py-0.5 rounded-full">1</span>
+        </button>
+        <button onclick="setWorkView('graphic')" id="tab-btn-graphic" class="py-2 px-4 rounded-full font-medium transition-all whitespace-nowrap bg-white/5 text-neutral-300 hover:text-white hover:bg-white/10 flex items-center gap-1.5">
+          <span>Graphic Design</span>
+          <span class="text-[10px] opacity-75 bg-white/10 px-1.5 py-0.5 rounded-full">2</span>
+        </button>
+        <button onclick="setWorkView('branding')" id="tab-btn-branding" class="py-2 px-4 rounded-full font-medium transition-all whitespace-nowrap bg-white/5 text-neutral-300 hover:text-white hover:bg-white/10 flex items-center gap-1.5">
+          <span>Branding & Packaging</span>
+          <span class="text-[10px] opacity-75 bg-white/10 px-1.5 py-0.5 rounded-full">2</span>
+        </button>
+      </div>
+
+      <!-- WORK CONTENT VIEWPORT -->
+      <div id="work-scroll-container" class="p-5 sm:p-8 overflow-y-auto custom-scrollbar flex-grow space-y-12">
+        
+        <!-- ============================================== -->
+        <!-- 1. SECTION: INTERACTIVE UI/UX DESIGN          -->
+        <!-- ============================================== -->
+        <section id="section-interactive" class="space-y-6">
+          <div class="flex items-center justify-between border-b border-orange-500/30 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+              <h3 class="text-base sm:text-lg font-medium text-white uppercase tracking-wider">1. Interactive UI / UX Design</h3>
+            </div>
+            <span class="text-[11px] text-neutral-400 uppercase tracking-widest">Digital Product & SaaS</span>
+          </div>
+
+          <article class="p-6 sm:p-8 rounded-xl bg-white/5 border border-white/10 space-y-6 hover:border-white/20 transition-all">
+            <div class="border-b border-white/10 pb-4 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+              <div>
+                <span class="text-[11px] tracking-widest text-orange-400 uppercase font-semibold">Startup Internship</span>
+                <h4 class="text-xl sm:text-2xl font-medium text-white uppercase mt-1">WhiskerBond</h4>
+              </div>
+              <div class="text-xs text-neutral-400 tracking-wider">
+                UX/UI Designer • June 2026 – Present
+              </div>
+            </div>
+
+            <p class="text-sm text-neutral-200 font-light max-w-3xl leading-relaxed">
+              Working on a one-stop pet care ecosystem connecting pet parents with pet services through a unified platform and dashboard experience.
+            </p>
+
+            <div class="space-y-2.5 text-xs sm:text-sm text-neutral-300 font-light">
+              <div class="flex items-start gap-2.5">
+                <span class="text-orange-400 mt-1 font-bold">•</span>
+                <span>Designed the complete web UI, including landing pages, sign-up, login and email flows.</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="text-orange-400 mt-1 font-bold">•</span>
+                <span>Created user workflows and dashboard experiences, mapping how features function step-by-step.</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="text-orange-400 mt-1 font-bold">•</span>
+                <span>Worked on information architecture, feature structure and user journeys with guidance from mentors.</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="text-orange-400 mt-1 font-bold">•</span>
+                <span>Contributed to translating business requirements into clear, functional user experiences.</span>
+              </div>
+              <div class="flex items-start gap-2.5">
+                <span class="text-orange-400 mt-1 font-bold">•</span>
+                <span>Designed the current website experience and visual system being used by the startup.</span>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-white/10 flex flex-wrap items-center gap-4">
+              <a href="https://whiskerbond.co.in/" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-white text-neutral-950 text-xs uppercase font-medium tracking-wider hover:bg-neutral-200 transition-all flex items-center gap-2 shadow-md">
+                <span>View Client Side</span>
+                <span>↗</span>
+              </a>
+              <a href="https://whiskerbond.com/" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-white/10 text-white border border-white/20 text-xs uppercase font-medium tracking-wider hover:bg-white/20 transition-all flex items-center gap-2">
+                <span>View User Side</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </article>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- 2. SECTION: GRAPHIC DESIGN & MARKETING        -->
+        <!-- ============================================== -->
+        <section id="section-graphic" class="space-y-8">
+          <div class="flex items-center justify-between border-b border-orange-500/30 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+              <h3 class="text-base sm:text-lg font-medium text-white uppercase tracking-wider">2. Graphic Design & Marketing</h3>
+            </div>
+            <span class="text-[11px] text-neutral-400 uppercase tracking-widest">OOH, PR & Social Campaigns</span>
+          </div>
+          
+          <!-- Subsection 1: Posters, Billboards & PR Work -->
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs text-orange-400 uppercase font-medium tracking-wider">Subsection A • Posters, Billboards & PR Work</span>
+              <span class="text-[10px] text-neutral-400">3 Featured Works</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <!-- Billboard: Bill Board.png / Bill Board.jpg -->
+              <div class="p-5 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between">
+                <div>
+                  <div class="h-48 bg-neutral-950 rounded-lg border border-white/15 flex items-center justify-center p-2 relative overflow-hidden group">
+                    <img src="Bill Board.png" onerror="this.onerror=null; this.src='Bill Board.jpg'; this.onerror=function(){ this.parentElement.querySelector('.upload-fallback').classList.remove('hidden'); this.classList.add('hidden'); };" alt="Vishwapreneur 13 Billboard" class="max-h-full max-w-full object-contain rounded">
+                    
+                    <div class="upload-fallback hidden text-center cursor-pointer p-3 group-hover:scale-105 transition-transform" onclick="triggerUpload('input-billboard')">
+                      <span class="text-2xl block mb-1">🖼</span>
+                      <span class="text-[11px] font-medium text-white/90 block uppercase">Bill Board.png</span>
+                      <span class="text-[9px] text-orange-400 block mt-0.5">Click to browse file</span>
+                    </div>
+                    <input type="file" id="input-billboard" class="hidden" accept="image/*" onchange="previewCardImage(this, 'img-billboard-upload')">
+                    <img id="img-billboard-upload" class="absolute inset-0 w-full h-full object-contain hidden bg-black" alt="Uploaded Billboard">
+                  </div>
+                  <div class="mt-4">
+                    <span class="text-[10px] tracking-widest text-amber-400 uppercase font-medium">Outdoor Billboard</span>
+                    <h4 class="text-sm font-medium text-white uppercase mt-0.5">Taking Vishwapreneur Offline</h4>
+                    <p class="text-xs text-neutral-300 font-light mt-2 leading-relaxed">
+                      We extended our marketing beyond digital through billboards at Market Yard and Gangadham, secured through our PR network on a barter basis. Seeing Vishwapreneur 13 across the city was a proud milestone, turning our event from an idea into something people could see in the real world.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PR & Media: global hues.png -->
+              <div class="p-5 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between">
+                <div>
+                  <div class="h-48 bg-neutral-950 rounded-lg border border-white/15 flex items-center justify-center p-2 relative overflow-hidden group">
+                    <img src="global hues.png" onerror="this.onerror=null; this.parentElement.querySelector('.upload-fallback').classList.remove('hidden'); this.classList.add('hidden');" alt="PR Media Global Hues" class="max-h-full max-w-full object-contain rounded">
+                    
+                    <div class="upload-fallback hidden text-center cursor-pointer p-3 group-hover:scale-105 transition-transform" onclick="triggerUpload('input-pr')">
+                      <span class="text-2xl block mb-1">📰</span>
+                      <span class="text-[11px] font-medium text-white/90 block uppercase">global hues.png</span>
+                      <span class="text-[9px] text-orange-400 block mt-0.5">Click to browse file</span>
+                    </div>
+                    <input type="file" id="input-pr" class="hidden" accept="image/*" onchange="previewCardImage(this, 'img-pr-upload')">
+                    <img id="img-pr-upload" class="absolute inset-0 w-full h-full object-contain hidden bg-black" alt="Uploaded PR Media">
+                  </div>
+                  <div class="mt-4">
+                    <span class="text-[10px] tracking-widest text-amber-400 uppercase font-medium">Press & Digital Media</span>
+                    <h4 class="text-sm font-medium text-white uppercase mt-0.5">PR & Media Outreach</h4>
+                    <p class="text-xs text-neutral-300 font-light mt-2 leading-relaxed">
+                      Our PR efforts expanded Vishwapreneur 13 across magazines, news platforms and digital media, including Global Hues, Startup success stories, Campus Times, Prabhat, Sakal and ABP Majha. We designed custom posters and video creatives for these platforms, ensuring a consistent visual identity while taking the event beyond our own channels.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Poster: Early bird poster.png -->
+              <div class="p-5 rounded-xl bg-white/5 border border-white/10 flex flex-col justify-between">
+                <div>
+                  <div class="h-48 bg-neutral-950 rounded-lg border border-white/15 flex items-center justify-center p-2 relative overflow-hidden group">
+                    <img src="Early bird poster.png" onerror="this.onerror=null; this.parentElement.querySelector('.upload-fallback').classList.remove('hidden'); this.classList.add('hidden');" alt="Early Bird Poster" class="max-h-full max-w-full object-contain rounded">
+                    
+                    <div class="upload-fallback hidden text-center cursor-pointer p-3 group-hover:scale-105 transition-transform" onclick="triggerUpload('input-poster')">
+                      <span class="text-2xl block mb-1">🎟</span>
+                      <span class="text-[11px] font-medium text-white/90 block uppercase">Early bird poster.png</span>
+                      <span class="text-[9px] text-orange-400 block mt-0.5">Click to browse file</span>
+                    </div>
+                    <input type="file" id="input-poster" class="hidden" accept="image/*" onchange="previewCardImage(this, 'img-poster-upload')">
+                    <img id="img-poster-upload" class="absolute inset-0 w-full h-full object-contain hidden bg-black" alt="Uploaded Poster">
+                  </div>
+                  <div class="mt-4">
+                    <span class="text-[10px] tracking-widest text-amber-400 uppercase font-medium">Campaign Collateral</span>
+                    <h4 class="text-sm font-medium text-white uppercase mt-0.5">Poster Design & Ticket Marketing</h4>
+                    <p class="text-xs text-neutral-300 font-light mt-2 leading-relaxed">
+                      We created a series of posters to build anticipation and drive ticket sales. One standout campaign sold Early Bird tickets without revealing the guest, relying entirely on strong imagery, typography and a simple quote to create curiosity. It was a reminder that good design can create intrigue even when information is intentionally limited.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subsection 2: Social Media & Campaign Design -->
+          <div class="p-6 sm:p-8 rounded-xl bg-white/5 border border-white/10 space-y-4">
+            <div class="border-b border-white/10 pb-3 flex items-center justify-between">
+              <span class="text-xs text-orange-400 uppercase font-medium tracking-wider">Subsection B • Social Media & Campaign Design</span>
+              <span class="text-[10px] text-neutral-400">EDC VIT Creative Team</span>
+            </div>
+            
+            <div class="space-y-3 text-xs sm:text-sm text-neutral-300 font-light leading-relaxed max-w-3xl">
+              <p>
+                I designed Instagram posts, carousels and grid systems for EDC VIT, giving each campaign a distinct visual theme aligned with the event narrative.
+              </p>
+              <p>
+                From visual storytelling to campaign planning, the work strengthened my ability to communicate events through purposeful imagery and cohesive design.
+              </p>
+              <p>
+                The work was created collaboratively with my team, reflecting my ability to be adaptable, collaborative and consistent within a fast-moving creative environment.
+              </p>
+            </div>
+
+            <div class="pt-3">
+              <a href="https://www.instagram.com/edcvit_/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-neutral-950 text-xs tracking-wider uppercase font-medium hover:bg-neutral-200 transition-all shadow-md">
+                <span>View on Instagram @edcvit_</span>
+                <span class="text-xs">↗</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- 3. SECTION: BRANDING & PACKAGING              -->
+        <!-- ============================================== -->
+        <section id="section-branding" class="space-y-10">
+          <div class="flex items-center justify-between border-b border-orange-500/30 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <h3 class="text-base sm:text-lg font-medium text-white uppercase tracking-wider">3. Branding & Packaging</h3>
+            </div>
+            <span class="text-[11px] text-neutral-400 uppercase tracking-widest">Brand Systems & Identity</span>
+          </div>
+
+          <!-- CASE STUDY 1: VISHWAPRENEUR 13 -->
+          <article class="p-6 sm:p-8 rounded-xl bg-white/5 border border-white/10 space-y-6">
+            <div class="border-b border-white/10 pb-4">
+              <span class="text-[11px] tracking-widest text-orange-400 uppercase font-semibold">Logo Design Case Study | EDC VIT</span>
+              <h4 class="text-xl sm:text-2xl font-medium text-white uppercase mt-1">Vishwapreneur 13 — Transcending Through Ordinary</h4>
+            </div>
+
+            <!-- Vishwapreneur Logo -->
+            <div class="w-full flex justify-center py-6 bg-black/60 rounded-xl border border-white/10 p-4">
+              <img src="26 Logo.png" onerror="this.onerror=null; this.src='logo.png'; this.onerror=function(){ this.src='logobg.jpg'; };" alt="Vishwapreneur 13 Logo Design" class="max-h-56 sm:max-h-64 object-contain rounded-lg shadow-2xl drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)]">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs sm:text-sm text-neutral-300 leading-relaxed font-light">
+              <div>
+                <h5 class="text-white font-medium uppercase tracking-wider text-xs mb-2">The Context</h5>
+                <p class="mb-4">
+                  Vishwapreneur is Pune’s biggest E-Summit, bringing together people from diverse domains to share real journeys, lessons and experiences. The 13th edition explored Alchemy, the transformation of something ordinary into something valuable. This felt especially relevant as EDC VIIT merged with EDC VIT, bringing its own phase of uncertainty, restructuring and growth.
+                </p>
+                
+                <h5 class="text-white font-medium uppercase tracking-wider text-xs mb-2">The Concept</h5>
+                <p class="mb-2">
+                  I interpreted Alchemy as a journey of transformation, both for the team and the audience. The logo combines the V of Vishwapreneur with a parachute, symbolising:
+                </p>
+                <ul class="list-disc list-inside space-y-1 pl-1 text-neutral-400">
+                  <li>Taking the leap beyond the familiar</li>
+                  <li>Flying higher through ambition and ideas</li>
+                  <li>Opening yourself to global opportunities</li>
+                  <li>Transforming from ordinary to extraordinary</li>
+                </ul>
+              </div>
+
+              <div>
+                <h5 class="text-white font-medium uppercase tracking-wider text-xs mb-2">Visual Language</h5>
+                <ul class="space-y-2 mb-4 text-neutral-300">
+                  <li><strong class="text-white font-normal">Orange:</strong> Inspired by alchemy’s transformation of base metals into gold, reinterpreted into a youthful, energetic tone.</li>
+                  <li><strong class="text-white font-normal">Gradient:</strong> Moves light &rarr; dark &rarr; light &rarr; dark, representing the non-linear journey of personal growth. Progress isn't always a straight line.</li>
+                  <li><strong class="text-white font-normal">Overall Form:</strong> A balance of corporate professionalism + student ambition, reflecting the people and energy behind Vishwapreneur.</li>
+                </ul>
+
+                <h5 class="text-white font-medium uppercase tracking-wider text-xs mb-2">My Design Approach</h5>
+                <p class="text-neutral-300">
+                  Rather than choosing Alchemy because it simply looked good, I questioned what the team was experiencing, what the audience should feel, and what story the event needed to tell. The final identity connected two transformations: Our transformation as a team + the audience's transformation through the event.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- CASE STUDY 2: VERGE -->
+          <article class="p-6 sm:p-8 rounded-xl bg-white/5 border border-white/10 space-y-6">
+            <div class="border-b border-white/10 pb-4">
+              <span class="text-[11px] tracking-widest text-orange-400 uppercase font-semibold">Brand Identity & Web Design | Hypothetical Brief</span>
+              <h4 class="text-xl sm:text-2xl font-medium text-white uppercase mt-1">Verge</h4>
+            </div>
+
+            <!-- Verge Images Gallery -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <div class="bg-black/50 p-3 rounded-xl border border-white/10 flex flex-col items-center justify-center min-h-[220px]">
+                <img src="brand-webdesign.png" onerror="this.onerror=null; this.src='brand-webdesign.jpg';" alt="Verge Web Experience" class="rounded-lg object-contain max-h-48 w-auto mx-auto shadow-md">
+                <span class="text-[10px] text-neutral-400 uppercase tracking-wider mt-2.5">Web Experience</span>
+              </div>
+              <div class="bg-black/50 p-3 rounded-xl border border-white/10 flex flex-col items-center justify-center min-h-[220px]">
+                <img src="logo-verge.png" onerror="this.onerror=null; this.src='Untitled - July 30, 2026 at 18.47.38.jpg';" alt="Verge Logo" class="rounded-lg object-contain max-h-48 w-auto mx-auto shadow-md">
+                <span class="text-[10px] text-neutral-400 uppercase tracking-wider mt-2.5">Brand Identity</span>
+              </div>
+              <div class="bg-black/50 p-3 rounded-xl border border-white/10 flex flex-col items-center justify-center min-h-[220px]">
+                <img src="rose-cola.png" onerror="this.onerror=null; this.src='Untitled - July 30, 2026 at 17.58.19.jpg';" alt="Verge Rose Cola Packaging" class="rounded-lg object-contain max-h-48 w-auto mx-auto shadow-md">
+                <span class="text-[10px] text-neutral-400 uppercase tracking-wider mt-2.5">Packaging Visual</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-xs sm:text-sm text-neutral-300 leading-relaxed font-light">
+              <div>
+                <h5 class="text-white font-medium uppercase tracking-wider text-xs mb-2">The Brief</h5>
+                <p class="mb-4">
+                  Verge is a German-inspired, non-alcoholic beverage designed primarily for seniors who want something refreshing, not overly sweet, familiar yet distinctive, and luxurious.
+                </p>
+                <h5 class="text-white font-medium uppercase tracking-wider text-xs mb-2">The Idea</h5>
+                <p>
+                  The brand brings together nostalgia, culture and modern indulgence, creating a drink that lets seniors reconnect with familiar memories while remaining relevant to younger generations.
+                </p>
+              </div>
+
+              <div>
+                <h5 class="text-white font-medium uppercase tracking-wider text-xs mb-2">Design Direction</h5>
+                <ul class="space-y-1.5 mb-4 text-neutral-300">
+                  <li>• <strong class="text-white font-normal">Glass bottles:</strong> Familiar packaging inspired by traditional beverages, creating a sense of nostalgia and trust.</li>
+                  <li>• <strong class="text-white font-normal">German architectural imagery:</strong> References historic German buildings and creates a connection to heritage and culture.</li>
+                  <li>• <strong class="text-white font-normal">Classic italic typography:</strong> Adds elegance, sophistication and a timeless character.</li>
+                  <li>• <strong class="text-white font-normal">Floral visual language:</strong> Gives the brand a softer, refreshing summer personality.</li>
+                  <li>• <strong class="text-white font-normal">Rich, restrained palette:</strong> Positions Verge as premium without feeling inaccessible.</li>
+                </ul>
+
+                <h5 class="text-white font-medium uppercase tracking-wider text-xs mb-2">The Experience</h5>
+                <p class="text-neutral-300">
+                  A taste of nostalgia, redesigned for today. It gives older audiences a connection to the past, while allowing younger audiences to discover and celebrate a piece of that culture in a new way.
+                </p>
+              </div>
+            </div>
+          </article>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: LET'S TALK / CONTACT & INQUIRY -->
+  <div id="modal-talk" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true">
+    <div class="bg-neutral-900 border border-white/20 text-neutral-100 rounded-2xl w-full max-w-lg p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] custom-scrollbar">
+      <button onclick="closeModal('modal-talk')" class="absolute top-5 right-5 text-neutral-400 hover:text-white text-2xl transition-colors leading-none" aria-label="Close modal">&times;</button>
+      
+      <div id="talk-hub-view">
+        <div class="text-xs tracking-[0.2em] text-orange-400 uppercase font-semibold mb-2">Direct Contact</div>
+        <h2 class="text-2xl font-normal text-white uppercase tracking-wide mb-1">Let's Connect</h2>
+        <p class="text-xs text-neutral-400 mb-6 font-light">Available for design opportunities, brand systems, and collaborative projects.</p>
+        
+        <div class="space-y-3 mb-6">
+          <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-neutral-400 uppercase tracking-widest block">Name</span>
+              <span class="text-sm font-medium text-white">Himanshi Jain</span>
+            </div>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
+            <div class="overflow-hidden">
+              <span class="text-[10px] text-neutral-400 uppercase tracking-widest block">Email</span>
+              <a href="mailto:himanshigjain02@gmail.com" class="text-xs sm:text-sm font-medium text-white hover:text-orange-400 transition-colors truncate block">himanshigjain02@gmail.com</a>
+            </div>
+            <button onclick="copyToClipboard('himanshigjain02@gmail.com', this)" class="text-[11px] uppercase tracking-wider px-3 py-1 rounded bg-white/10 hover:bg-white/20 text-white transition-all ml-2 flex-shrink-0">
+              Copy
+            </button>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-neutral-400 uppercase tracking-widest block">Phone</span>
+              <a href="tel:7387033411" class="text-xs sm:text-sm font-medium text-white hover:text-orange-400 transition-colors">7387033411</a>
+            </div>
+            <button onclick="copyToClipboard('7387033411', this)" class="text-[11px] uppercase tracking-wider px-3 py-1 rounded bg-white/10 hover:bg-white/20 text-white transition-all ml-2 flex-shrink-0">
+              Copy
+            </button>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between">
+            <div>
+              <span class="text-[10px] text-neutral-400 uppercase tracking-widest block">LinkedIn</span>
+              <span class="text-xs sm:text-sm font-medium text-white">himanshi-jain-7290b028b</span>
+            </div>
+            <a href="https://www.linkedin.com/in/himanshi-jain-7290b028b/" target="_blank" rel="noopener noreferrer" class="text-[11px] uppercase tracking-wider px-3 py-1 rounded bg-white/10 hover:bg-white/20 text-white transition-all ml-2 flex-shrink-0">
+              Open ↗
+            </a>
+          </div>
+        </div>
+
+        <button onclick="showInquiryForm()" class="w-full py-3 bg-white text-neutral-950 rounded-xl text-xs uppercase tracking-widest font-semibold hover:bg-neutral-200 transition-all shadow-lg">
+          Submit Inquiry &rarr;
+        </button>
+      </div>
+
+      <div id="talk-form-view" class="hidden">
+        <div class="flex items-center gap-2 mb-4 cursor-pointer text-xs text-neutral-400 hover:text-white" onclick="showContactHub()">
+          <span>&larr; Back to Contact Hub</span>
+        </div>
+        <div class="text-xs tracking-[0.2em] text-orange-400 uppercase font-semibold mb-1">Direct Message</div>
+        <h2 class="text-xl font-normal text-white uppercase tracking-wide mb-4">Project Inquiry</h2>
+
+        <form id="inquiry-form" onsubmit="handleInquirySubmit(event)" class="space-y-4">
+          <div>
+            <label class="block text-[11px] text-neutral-400 uppercase tracking-widest mb-1">Your Name</label>
+            <input type="text" required class="w-full px-3.5 py-2.5 rounded-lg bg-neutral-950 border border-white/15 text-white text-xs focus:outline-none focus:border-white transition-colors">
+          </div>
+          <div>
+            <label class="block text-[11px] text-neutral-400 uppercase tracking-widest mb-1">Email Address</label>
+            <input type="email" required class="w-full px-3.5 py-2.5 rounded-lg bg-neutral-950 border border-white/15 text-white text-xs focus:outline-none focus:border-white transition-colors">
+          </div>
+          <div>
+            <label class="block text-[11px] text-neutral-400 uppercase tracking-widest mb-1">Inquiry / Message</label>
+            <textarea rows="4" required class="w-full px-3.5 py-2.5 rounded-lg bg-neutral-950 border border-white/15 text-white text-xs focus:outline-none focus:border-white transition-colors"></textarea>
+          </div>
+          <button type="submit" class="w-full py-3 bg-white text-neutral-950 rounded-xl text-xs uppercase tracking-widest font-semibold hover:bg-neutral-200 transition-all">
+            Send Inquiry
+          </button>
+        </form>
+
+        <div id="inquiry-success" class="hidden text-center py-6">
+          <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto mb-3">✓</div>
+          <h3 class="text-base text-white font-medium uppercase tracking-wider">Inquiry Prepared</h3>
+          <p class="text-xs text-neutral-400 mt-1">Thank you! Your default mail client has opened addressed to himanshigjain02@gmail.com.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Ripple Canvas Simulation
+    const canvas = document.getElementById('water-ripples');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight * 0.6;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    let offset = 0;
+    let isLightMode = false;
+
+    function drawRipples() {
+      ctx.clearRect(0, 0, width, height);
+      offset += 0.02;
+
+      ctx.lineWidth = 1;
+      const lines = 18;
+      for (let i = 0; i < lines; i++) {
+        const yBase = (height / lines) * i;
+        ctx.beginPath();
+        
+        if (isLightMode) {
+          const alpha = Math.min(0.55, 0.15 + (i / lines) * 0.35);
+          ctx.strokeStyle = (i % 2 === 0) 
+            ? `rgba(254, 240, 138, ${alpha})` 
+            : `rgba(255, 255, 255, ${alpha})`;
+        } else {
+          const alpha = Math.min(0.4, 0.1 + (i / lines) * 0.28);
+          ctx.strokeStyle = (i % 3 === 0)
+            ? `rgba(251, 146, 60, ${alpha * 0.8})`
+            : `rgba(255, 255, 255, ${alpha})`;
+        }
+
+        for (let x = 0; x < width; x += 15) {
+          const wave = Math.sin(x * 0.008 + offset + i) * (2.2 + i * 0.35);
+          if (x === 0) ctx.moveTo(x, yBase + wave);
+          else ctx.lineTo(x, yBase + wave);
+        }
+        ctx.stroke();
+      }
+      requestAnimationFrame(drawRipples);
+    }
+    drawRipples();
+
+    // Modal Control
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      setTimeout(() => modal.classList.remove('opacity-0'), 10);
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.add('opacity-0');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }, 300);
+    }
+
+    function switchModal(fromId, toId) {
+      closeModal(fromId);
+      setTimeout(() => openModal(toId), 300);
+    }
+
+    // Open Work Modal with specific view preselected
+    function openWorkModal(view) {
+      openModal('modal-work');
+      setWorkView(view || 'all');
+    }
+
+    // Work View Filter Controller (Reliable display toggle)
+    function setWorkView(category) {
+      const allSections = ['interactive', 'graphic', 'branding'];
+      const allTabs = ['all', 'interactive', 'graphic', 'branding'];
+
+      // Update button styles
+      allTabs.forEach(tab => {
+        const btn = document.getElementById(`tab-btn-${tab}`);
+        if (!btn) return;
+        if (tab === category) {
+          btn.className = "py-2 px-4 rounded-full font-medium transition-all whitespace-nowrap bg-orange-500 text-white shadow-sm flex items-center gap-1.5";
+        } else {
+          btn.className = "py-2 px-4 rounded-full font-medium transition-all whitespace-nowrap bg-white/5 text-neutral-300 hover:text-white hover:bg-white/10 flex items-center gap-1.5";
+        }
+      });
+
+      // Show/hide sections
+      allSections.forEach(secKey => {
+        const sec = document.getElementById(`section-${secKey}`);
+        if (!sec) return;
+        if (category === 'all' || category === secKey) {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+
+      // Scroll viewport back to top
+      const scrollPane = document.getElementById('work-scroll-container');
+      if (scrollPane) scrollPane.scrollTop = 0;
+    }
+
+    function triggerUpload(inputId) {
+      const input = document.getElementById(inputId);
+      if (input) input.click();
+    }
+
+    function previewCardImage(input, imgId) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = document.getElementById(imgId);
+          if (img) {
+            img.src = e.target.result;
+            img.classList.remove('hidden');
+            const fallback = img.parentElement.querySelector('.upload-fallback');
+            if (fallback) fallback.classList.add('hidden');
+          }
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    // Contact Flow
+    function showInquiryForm() {
+      document.getElementById('talk-hub-view').classList.add('hidden');
+      document.getElementById('talk-form-view').classList.remove('hidden');
+    }
+
+    function showContactHub() {
+      document.getElementById('talk-hub-view').classList.remove('hidden');
+      document.getElementById('talk-form-view').classList.add('hidden');
+    }
+
+    function copyToClipboard(text, btn) {
+      navigator.clipboard.writeText(text);
+      const original = btn.innerText;
+      btn.innerText = 'Copied!';
+      btn.classList.add('bg-white', 'text-black');
+      setTimeout(() => {
+        btn.innerText = original;
+        btn.classList.remove('bg-white', 'text-black');
+      }, 2000);
+    }
+
+    function handleInquirySubmit(e) {
+      e.preventDefault();
+      document.getElementById('inquiry-form').classList.add('hidden');
+      document.getElementById('inquiry-success').classList.remove('hidden');
+      window.location.href = `mailto:himanshigjain02@gmail.com?subject=Portfolio%20Inquiry%20from%20Website`;
+    }
+
+    // Dynamic Mode Switcher: Sunset vs. Sunrise
+    function toggleTheme() {
+      isLightMode = !isLightMode;
+      const root = document.getElementById('app-root');
+      const icon = document.getElementById('theme-icon');
+      const text = document.getElementById('theme-text');
+      const heroQuote = document.getElementById('hero-quote');
+
+      heroQuote.style.opacity = '0';
+
+      setTimeout(() => {
+        if (isLightMode) {
+          root.classList.add('theme-light');
+          icon.innerText = '🌄';
+          text.innerText = 'Sunset Mode';
+          heroQuote.innerHTML = 'THE MORE YOU CREATE,<br class="hidden sm:inline"> THE MORE YOU GROW AND EVOLVE';
+        } else {
+          root.classList.remove('theme-light');
+          icon.innerText = '🌅';
+          text.innerText = 'Sunrise Mode';
+          heroQuote.innerHTML = 'IT’S NOT IN THE DREAMING,<br class="hidden sm:inline"> IT’S IN THE DOING !';
+        }
+        heroQuote.style.opacity = '1';
+      }, 250);
+    }
+  </script>
+</body>
+</html>
